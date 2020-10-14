@@ -85,23 +85,19 @@ class Solicitudes(models.Model):
     def __str__(self):
         return self.tipo
 
-# class Historia_Medica(models.Model):
-#     diagnostico = models.TextField(max_length=1000)
-#     tratamiento= models.TextField(max_length=1000)
-#     pronostico = models.TextField(max_length=1000)
-#     medico= models.ForeignKey(Medico, on_delete= models.PROTECT)
-#     paciente = models.ForeignKey(Paciente, on_delete= models.PROTECT)
-
-#     def __str__(self):
-#         return self.diagnostico
-
+estado=(
+    ('Remitida','Remitida'),
+    ('Proceso','Proceso'),
+    ('Rechasada','Rechasada'),
+    ('Terminada','Terminada'),
+)
 
 class Consulta(models.Model):
     titulo = models.CharField(max_length=45)
     descripcion = models.TextField(max_length=1000)
     medico = models.ForeignKey(Profesional,on_delete= models.PROTECT)
     paciente = models.ForeignKey(Paciente, on_delete= models.PROTECT)
-    
+    estado = models.CharField(choices=estado,max_length=45)
 
     def __str__(self):
         return self.titulo
