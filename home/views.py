@@ -13,4 +13,7 @@ def vista_login(request):
 
 
 def vista_perfil(request):
-    return render(request, 'perfil.html')
+    return render(request, 'perfil-u.html')
+
+def vista_cita(request):
+    return render(request, 'cita.html')
