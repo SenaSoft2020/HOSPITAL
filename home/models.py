@@ -1,6 +1,11 @@
 from django.db import models
 
 # Create your models here.
+class Especialista_profecional(models.Model):
+    nombre = models.CharField(max_length=45)
+
+    def __str__(self):
+        return self.nombre
 tipo_identificacion=(
     ('C','CC'),
     ('T.I','T.I'),
@@ -11,6 +16,7 @@ tipo_doctor= (
     ('E','ESPECIALISTA'),
 )
 class Profesional(models.Model):
+    especialista = models.ForeignKey(Especialista_profecional,on_delete=models.PROTECT)
     nombre= models.CharField(max_length=45)
     apellido = models.CharField(max_length=45)
     tipo_identificacion= models.CharField(choices=tipo_identificacion,max_length=45)
@@ -102,7 +108,6 @@ class Consulta(models.Model):
 
 class Grupo_Familia(models.Model):
     paciente= models.ForeignKey(Paciente, on_delete= models.PROTECT)
-    medico = models.ForeignKey(Profesional, on_delete= models.PROTECT)
     nombre = models.CharField(max_length=45)
 
     def __str__(self):
@@ -141,9 +146,3 @@ class Incapacidad(models.Model):
     def __str__(self):
         return self.descripcion
 
-class Especialista_profecional(models.Model):
-    profesional = models.ForeignKey(Profesional,on_delete=models.PROTECT)
-    nombre = models.CharField(max_length=45)
-
-    def __str__(self):
-        return self.nombre
