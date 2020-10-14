@@ -10,8 +10,9 @@ tipo_doctor= (
     ('G','GENERAL'),
     ('E','ESPECIALISTA'),
 )
-class Medico(models.Model):
+class Profesional(models.Model):
     nombre= models.CharField(max_length=45)
+    apellido = models.CharField(max_length=45)
     tipo_identificacion= models.CharField(choices=tipo_identificacion,max_length=45)
     identificacion = models.IntegerField()
     tipo_doctor = models.CharField(choices=tipo_doctor,max_length=45)
@@ -51,7 +52,7 @@ class Paciente(models.Model):
     estrato= models.CharField(choices=estrato,max_length=45)
     nivel_educativo=models.CharField(choices=nivel_educativo,max_length=45)
     correo= models.EmailField()
-    telefono = models.IntegerField()
+    telefono = models.CharField(max_length=45)
     nombre = models.CharField(max_length=45)
     apellido = models.CharField(max_length=45)
     tipo_paciente= models.CharField(choices=tipo_paciente,max_length=50)
@@ -78,32 +79,71 @@ class Solicitudes(models.Model):
     def __str__(self):
         return self.tipo
 
-class Historia_Medica(models.Model):
-    diagnostico = models.TextField(max_length=1000)
-    tratamiento= models.TextField(max_length=1000)
-    pronostico = models.TextField(max_length=1000)
-    medico= models.ForeignKey(Medico, on_delete= models.PROTECT)
-    paciente = models.ForeignKey(Paciente, on_delete= models.PROTECT)
+# class Historia_Medica(models.Model):
+#     diagnostico = models.TextField(max_length=1000)
+#     tratamiento= models.TextField(max_length=1000)
+#     pronostico = models.TextField(max_length=1000)
+#     medico= models.ForeignKey(Medico, on_delete= models.PROTECT)
+#     paciente = models.ForeignKey(Paciente, on_delete= models.PROTECT)
 
-    def __str__(self):
-        return self.diagnostico
+#     def __str__(self):
+#         return self.diagnostico
 
 
 class Consulta(models.Model):
     titulo = models.CharField(max_length=45)
     descripcion = models.TextField(max_length=1000)
-    medico = models.ForeignKey(Medico,on_delete= models.PROTECT)
+    medico = models.ForeignKey(Profesional,on_delete= models.PROTECT)
     paciente = models.ForeignKey(Paciente, on_delete= models.PROTECT)
-    historia_medica = models.ForeignKey(Historia_Medica,on_delete= models.PROTECT)
+    
 
     def __str__(self):
         return self.titulo
 
-class Grupo_Familiar(models.Model):
+class Grupo_Familia(models.Model):
     paciente= models.ForeignKey(Paciente, on_delete= models.PROTECT)
-    medico = models.ForeignKey(Medico, on_delete= models.PROTECT)
+    medico = models.ForeignKey(Profesional, on_delete= models.PROTECT)
     nombre = models.CharField(max_length=45)
 
     def __str__(self):
         return self.nombre
 
+class Resultado(models.Model):
+    fecha_registro =models.DateField()
+    archivo = models.CharField(max_length=45)
+    consulta= models.ForeignKey(Consulta,on_delete= models.PROTECT)
+
+    def __str__(self):
+        return self.archivo
+
+class Toma_Examen(models.Model):
+    consuta= models.ForeignKey(Consulta, on_delete=models.PROTECT)
+    diagnostico = models.TextField(max_length=1000)
+    examen = models.TextField(max_length=1000)
+    procedimiento = models.TextField(max_length=1000)
+
+    def __str__(self):
+        return self.diagnostico
+
+class Remision(models.Model):
+    consulta = models.ForeignKey(Consulta, on_delete=models.PROTECT)
+    fecha = models.DateField()
+
+    def __str__(self):
+        return self.fecha
+
+class Incapacidad(models.Model):
+    consulta= models.ForeignKey(Consulta,on_delete=models.PROTECT)
+    descripcion = models.TextField(max_length=1000)
+    fecha_inicio = models.DateField()
+    fecha_fin = models.DateField()
+
+    def __str__(self):
+        return self.descripcion
+
+class Especialista_profecional(models.Model):
+    profesional = models.ForeignKey(Profesional,on_delete=models.PROTECT)
+    nombre = models.CharField(max_length=45)
+
+    def __str__(self):
+        return self.nombre
