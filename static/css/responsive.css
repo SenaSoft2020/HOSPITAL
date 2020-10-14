@@ -14,7 +14,7 @@
 }
 
 .color{
-    background: #95f5f8;
+    background: #DFEEFA;
 }
 
 .header{
@@ -79,4 +79,9 @@
 .separate{
     padding-top: 100px;
     border: #000 solid 1px;
+}
+
+.header2{
+    display: flex;
+    margin-left: 70px;    
 }

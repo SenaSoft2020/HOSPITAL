@@ -9,7 +9,7 @@
             <div class="sidebar-sticky pt-3">
                 <ul class="nav flex-column">
                     <li class="nav-item">
-                        <a class="nav-link active" href="#">
+                        <a class="nav-link active" href="{% url 'perfil' %}">
                             <span><svg width="2em" height="2em" viewBox="0 0 21 21" class="bi bi-person-circle"
                                     fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                     <path
@@ -40,7 +40,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">
+                        <a class="nav-link" href="{% url 'examen' %}">
                             <span></span>
                             Examenes
                         </a>
@@ -103,26 +103,18 @@
                 <div class="container col-sm-12">
                     <div class="row">
                         <div class="borde col-sm-12">
-                            <div class="container header">
-                                <form>
+                            <div class="container header2">
+                                <form>                                                          
                                     <div class="form-group">
-                                      <label for="exampleFormControlInput1">Email address</label>
-                                      <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+                                      <label for="exampleFormControlInput1">Medico General</label>
+                                      <input type="text" class="form-control" placeholder="Medicos Generales">
+                                      <!-- select -->
+                                    </div>                                                             
+                                    <div class="form-group">
+                                      <label for="exampleFormControlTextarea1">Motivo de la cita</label>
+                                      <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Escriba un breve diagnostico"></textarea>
                                     </div>
-                                    <div class="form-group">
-                                      <label for="exampleFormControlSelect1">Example select</label>
-                                      <select class="form-control" id="exampleFormControlSelect1">
-                                        <option>1</option>
-                                        <option>2</option>
-                                        <option>3</option>
-                                        <option>4</option>
-                                        <option>5</option>
-                                      </select>
-                                    </div>                            
-                                    <div class="form-group">
-                                      <label for="exampleFormControlTextarea1">Motivo de la consulta</label>
-                                      <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-                                    </div>
+                                    <button type="submit" class="btn btn-primary">Solicitud</button>
                                   </form>
                             </div>
                         </div>
