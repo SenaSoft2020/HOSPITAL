@@ -145,4 +145,3 @@ class Incapacidad(models.Model):
 
     def __str__(self):
         return self.descripcion
-
