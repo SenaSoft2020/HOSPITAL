@@ -70,21 +70,6 @@ class Paciente(models.Model):
     def __str__(self):
         return self.nombre
 
-
-tipo=(
-    ('P','Petición'),
-    ('Q','Quejas'),
-    ('R','Reclamos'),
-    ('S','Solicitudes'),
-)
-class Solicitudes(models.Model):
-    tipo = models.CharField(choices=tipo,max_length=45)
-    descripcion= models.TextField(max_length=1000)
-    paciente = models.ForeignKey(Paciente, on_delete=models.PROTECT)
-
-    def __str__(self):
-        return self.tipo
-
 estado=(
     ('Remitida','Remitida'),
     ('Proceso','Proceso'),

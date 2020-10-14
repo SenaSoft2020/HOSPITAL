@@ -4,7 +4,6 @@ from .models import *
 
 admin.site.register(Profesional)
 admin.site.register(Paciente)
-admin.site.register(Solicitudes)
 admin.site.register(Consulta)
 admin.site.register(Grupo_Familia)
 admin.site.register(Resultado)
