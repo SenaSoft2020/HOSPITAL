@@ -78,8 +78,23 @@ def vista_medico(request):
 
 
 def vista_pacientes(request):
-    return render(request, 'pacientes.html')
+    usu = User.objects.get(id = request.user.id)
+    med = Profesional.objects.get(user= usu)
+    
+    consultas = Consulta.objects.filter(medico = med) 
+    
+    return render(request, 'pacientes.html',locals())
+    
 
 
 def vista_horario(request):
     return render(request, 'horario.html')
+
+
+def vista_atender_paciente(request):
+    usu = User.objects.get(id = request.user.id)
+    med = Profesional.objects.get(user= usu)
+
+    consulta = Consulta.objects.filter(medico = med)
+    
+    return render(request,'atender.html',locals())

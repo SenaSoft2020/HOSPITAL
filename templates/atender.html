@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block contenido %}
+{% for p in consulta %}
+    <p>
+        <!-- vista del paciente -->
+    <p>Medico: {{p.medico}}</p> 
+    <p>Nombre paciente: {{p.paciente.nombres}}</p>
+    <p>Apellido paciente: {{p.paciente.apellidos}}</p>
+    <p>Identificación: {{p.paciente.identificacion}}</p>
+    <p>Edad: {{p.paciente.edad}}</p>
+    <p>Molestia: {{p.molestia_principal}}</p>
+    <p>Diagnostico: {{p.diagnostico}}</p>
+
+    </p>
+{% endfor %}
+
+
+{% endblock contenido %}

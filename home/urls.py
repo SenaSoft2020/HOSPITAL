@@ -13,4 +13,5 @@ urlpatterns = [
     path('medico/', vista_medico, name = 'medico'),
     path('pacientes/', vista_pacientes, name = 'pacientes'),
     path('horario/', vista_horario, name = 'horario'),
+    path('atender/',vista_atender_paciente, name= 'atender'),
 ]
