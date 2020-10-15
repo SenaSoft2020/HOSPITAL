@@ -94,7 +94,6 @@ class Paciente (models.Model):
 	tipo_identificacion = models.CharField(choices = Tipo_identificacion, max_length = 45)
 	correo				= models.EmailField(unique = True)
 	genero				= models.CharField(choices = genero, max_length = 45)
-	
 	estrato				= models.CharField(choices = estrato,max_length = 45)
 	nivel_educativo		= models.CharField(choices = nivel_educativo, max_length = 45)
 	tipo_paciente		= models.CharField(choices = tipo_paciente, max_length = 50)
@@ -127,7 +126,7 @@ class Toma_Examen (models.Model):
 		return str(self.fecha_formulacion) + ' ' + self.procedimiento 
 
 class Resultado (models.Model):
-	fecha_registro 		= models.DateField()
+	fecha_registro 		= models.DateField(auto_now_add=True)
 	archivo 			= models.FileField(upload_to = 'examenes', null=True, blank=True)
 	consulta 			= models.ForeignKey(Consulta,on_delete= models.PROTECT)
 

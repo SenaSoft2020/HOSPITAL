@@ -45,6 +45,24 @@ def vista_perfil(request):
 def vista_cita(request):
     return render(request, 'cita.html')
 
+def vista_crear_cita(request):
+    usu = User.objects.get(id = request.user.id)
+    pac = Paciente.objects.get(user= usu)
+    consutas = Consultas.objects.filter(paciente = pac)
+    if request.method == 'POST':
+        formulario = crear_cita_form(request.POST, request.FILES)
+        if formulario.is_valid():
+            molestia = formulario.save(commit = False)
+            molestia.status =True
+            molestia.save()
+            diagnostico = formulario.save(commit = False)
+            diagnostico.status =True
+            diagnostico.save()
+            return redirect('citas/')
+    else:
+        form_cita.consuta = consult.id
+    return render(request, 'cita.html',locals())
+
 
 def vista_examen(request):
     return render(request, 'examen.html')

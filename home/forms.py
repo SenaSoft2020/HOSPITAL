@@ -1,6 +1,6 @@
 from django import forms
 from django.shortcuts import render
-
+from .models import *
 
 class login_form(forms.Form):
     paciente = forms.CharField(label="Identificacion", widget=forms.TextInput(
@@ -13,3 +13,9 @@ class login_form(forms.Form):
                }
     ))
     # (render_value=False) da error
+
+class crear_cita_form(forms.Form):
+    class Meta:
+        models = Consulta
+        fields = '__all__'
+        exclude = ['fecha_consulta','paciente','estado']
