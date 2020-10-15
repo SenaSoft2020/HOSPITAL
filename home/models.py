@@ -114,7 +114,7 @@ class Consulta (models.Model):
 	paciente 			= models.ForeignKey(Paciente, on_delete= models.PROTECT)
 
 	def __str__(self):
-		return str(self.fecha_consulta) + ' ' + self.paciente + ' ' + self.estado
+		return str(self.fecha_consulta) + ' ' +  self.estado
 
 # Recomendacion de Examenes a realizar 
 class Toma_Examen (models.Model): 
@@ -123,7 +123,7 @@ class Toma_Examen (models.Model):
 	consuta 			= models.ForeignKey(Consulta, on_delete=models.PROTECT)
 
 	def __str__(self):
-		return str(self.fecha_formulacion) + ' ' + self.procedimiento 
+		return str(self.fecha_formulacion) + ' ' + self.procedimiento + ' ' + self.paciente 
 
 class Resultado (models.Model):
 	fecha_registro 		= models.DateField(auto_now_add=True)
@@ -131,7 +131,7 @@ class Resultado (models.Model):
 	consulta 			= models.ForeignKey(Consulta,on_delete= models.PROTECT)
 
 	def __str__(self):
-		return str(self.fecha_formulacion) + ' ' + self.consulta.nombre
+		return str(self.fecha_registro) + ' ' + self.consulta.paciente.nombres
 
 
 class Remision (models.Model):
@@ -139,7 +139,7 @@ class Remision (models.Model):
 	fecha 				= models.DateField()
 
 	def __str__(self):
-		return str(self.fecha) + ' ' + self.consulta.nombre
+		return str(self.fecha) + ' ' + self.consulta.paciente.nombres
 
 class Incapacidad (models.Model):
 	consulta 			= models.ForeignKey(Consulta,on_delete=models.PROTECT)
