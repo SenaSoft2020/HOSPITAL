@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.urls import reverse
 from .forms import *
 from .models import *
 from django.contrib.auth import login, logout, authenticate
@@ -31,8 +32,21 @@ def vista_logout(request):
     return redirect('/login/')
 
 def vista_perfil(request):
-    
     return render(request, 'perfil-u.html')
+
 
 def vista_cita(request):
     return render(request, 'cita.html')
+
+
+def vista_examen(request):
+    return render(request, 'examen.html')
+
+def vista_medico(request):
+    return render(request, 'perfil-a.html')
+
+def vista_pacientes(request):
+    return render(request, 'pacientes.html')
+
+def vista_horario(request):
+    return render(request, 'horario.html')

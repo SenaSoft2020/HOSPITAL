@@ -1,37 +1,37 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block contenido %}
-<form action="" method="POST">
+<!-- <form action="" method="POST">
     {{formulario.as_p}}
     <input type="submit" value="Entrar">
-</form>
-<!-- Contenido 
+</form> -->
+<!-- Contenido -->
 <div class="container col-sm-6">
     <div class="borde col-sm-12">
         <div class="separate">
-            <form>
+            <form class="boton" action="" method="POST">
+                {% csrf_token %}
                 <h1 class="display-4">Iniciar Sesion</h1>
                 <hr class="my-4">
                 <div class="form-group">
                     <label for="exampleInputEmail1">Tipo de Identificacion</label>
-                    <input type="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">                   
+                                       
                 </div>
                 <div class="form-group">
                     <label for="exampleInputEmail1">Numero Identificacion</label>
-                    <input type="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">                   
+                    {{form.paciente}}                    
                 </div>
                 <div class="form-group">
                     <label for="exampleInputPassword1">Contraseña</label>
-                    <input type="password" class="form-control" id="exampleInputPassword1">
+                    {{form.clave}} 
                 </div>
                 <div class="form-group form-check">
                     <input type="checkbox" class="form-check-input" id="exampleCheck1">
                     <label class="form-check-label" for="exampleCheck1">Recordarme</label>
                 </div>
-                <button type="submit" class="btn btn-primary">Entrar</button>
+                <button type="submit" value="Entrar" class="btn btn-primary">Entrar</button>
             </form>
         </div>
     </div>
 </div>
-{% endblock contenido %} -->
-<!--  -->
+{% endblock contenido %}

@@ -1,6 +1,4 @@
-{% extends 'base.html' %}
-{% load static %}
-{% block contenido %}
+{% extends 'base.html' %} {% load static %} {% block contenido %}
 
 <!-- Contenido -->
 <div class="container-fluid">
@@ -9,7 +7,7 @@
             <div class="sidebar-sticky pt-3">
                 <ul class="nav flex-column">
                     <li class="nav-item">
-                        <a class="nav-link active" href="{% url 'perfil' %}">
+                        <a class="nav-link active fuente" href="{% url 'medico' %}">
                             <span><svg width="2em" height="2em" viewBox="0 0 21 21" class="bi bi-person-circle"
                                     fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                     <path
@@ -22,48 +20,15 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">
+                        <a class="nav-link" href="{% url 'pacientes' %}">
                             <span></span>
-                            Ordenes Medicas
+                            Pacientes
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'cita' %}">
+                        <a class="nav-link" href="{% url 'horario' %}">
                             <span></span>
-                            Solicitar Citas
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">
-                            <span></span>
-                            Citas pendientes
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">
-                            <span></span>
-                            Examenes
-                        </a>
-                    </li>
-                </ul>
-
-                <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
-                    <span>Historia Medica</span>
-                    <a class="d-flex align-items-center text-muted" href="#" aria-label="Add a new report">
-                        <span></span>
-                    </a>
-                </h6>
-                <ul class="nav flex-column mb-2">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">
-                            <span></span>
-                            Mi Historia Medica
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">
-                            <span></span>
-                            Grupo Familiar
+                            Horario de citas
                         </a>
                     </li>
                     <li class="nav-item">
@@ -90,18 +55,15 @@
         <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
             <div
                 class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-                <h1 class="h2">Examenes</h1>
+                <h1 class="h2">Perfil</h1>
                 <div class="btn-toolbar mb-2 mb-md-0">
                     <div class="btn-group mr-2">
-                        <span class="espce">
-                            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-funnel-fill"
-                                fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd"
-                                    d="M1.5 1.5A.5.5 0 0 1 2 1h12a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.128.334L10 8.692V13.5a.5.5 0 0 1-.342.474l-3 1A.5.5 0 0 1 6 14.5V8.692L1.628 3.834A.5.5 0 0 1 1.5 3.5v-2z" />
-                            </svg>
-                        </span>
-                        <input type="search" class="form-control light-table-filter" data-table="order-table"
-                            placeholder="Examen Medico" />
+                        <button type="button" class="btn btn-sm btn-outline-secondary">
+                            Share
+                        </button>
+                        <button type="button" class="btn btn-sm btn-outline-secondary">
+                            Export
+                        </button>
                     </div>
                 </div>
             </div>
@@ -110,10 +72,10 @@
                 <table class="order-table">
                     <thead>
                         <tr>
-                            <th>Examen</th>
-                            <th>Medico</th>
-                            <th>Fecha</th>
-                            <th>lugar</th>
+                            <th>Nombre</th>
+                            <th>Apellido</th>
+                            <th>Identificacion</th>
+                            <th>Historia Medica</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -121,23 +83,46 @@
                             <td>Prostata</td>
                             <td>Dr. Alex</td>
                             <td>28/02/2019</td>
-                            <td>Popayan</td>
+                            <td>
+                                <a href="">
+                                    <span><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-pen-fill"
+                                            fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd"
+                                                d="M13.498.795l.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001z" />
+                                        </svg></span>
+                                </a>
+                            </td>
                         </tr>
                         <tr>
                             <td>frrrr</td>
                             <td>Dr. Alex</td>
                             <td>01/12/2020</td>
-                            <td>Bogota</td>
+                            <td>
+                                <a href="">
+                                    <span><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-pen-fill"
+                                            fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd"
+                                                d="M13.498.795l.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001z" />
+                                        </svg></span>
+                                </a>
+                            </td>
                         </tr>
                         <tr>
                             <td>qaaaaa</td>
                             <td>Dr. Alex</td>
                             <td>12/05/2020</td>
-                            <td>Cali</td>
+                            <td>
+                                <a href="">
+                                    <span><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-pen-fill"
+                                            fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd"
+                                                d="M13.498.795l.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001z" />
+                                        </svg></span>
+                                </a>
+                            </td>
                         </tr>
                     </tbody>
                 </table>
-
             </section>
             <!-- FinContenido medico -->
         </main>

@@ -10,7 +10,7 @@
 }
 
 .logo{
-    height: 150px;
+    height: 130px;
 }
 
 .color{
@@ -78,10 +78,14 @@
 
 .separate{
     padding-top: 100px;
-    border: #000 solid 1px;
+    /* border: #000 solid 1px; */
 }
 
 .header2{
     display: flex;
     margin-left: 70px;    
+}
+
+.fuente{
+    /* 6EFC47 */
 }
