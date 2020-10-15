@@ -103,7 +103,7 @@ class Paciente (models.Model):
 	user 				= models.OneToOneField(User, on_delete = models.PROTECT)
 
 	def __str__(self):
-		return self.nombre + ' ' + self.identificacion
+		return self.nombres + ' ' + self.identificacion
 
 class Consulta (models.Model):
 	fecha_consulta 		= models.DateField(auto_now_add=True)

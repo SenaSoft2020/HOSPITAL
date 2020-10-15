@@ -18,4 +18,4 @@ class crear_cita_form(forms.Form):
     class Meta:
         models = Consulta
         fields = '__all__'
-        exclude = ['fecha_consulta','paciente','estado']
+        exclude = ['fecha_consulta','paciente','estado','diagnostico']

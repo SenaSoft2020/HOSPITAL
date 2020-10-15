@@ -48,19 +48,24 @@ def vista_cita(request):
 def vista_crear_cita(request):
     usu = User.objects.get(id = request.user.id)
     pac = Paciente.objects.get(user= usu)
-    consutas = Consultas.objects.filter(paciente = pac)
+    #consutas = Consultas.objects.filter(paciente = pac)
     if request.method == 'POST':
         formulario = crear_cita_form(request.POST, request.FILES)
         if formulario.is_valid():
-            molestia = formulario.save(commit = False)
-            molestia.status =True
-            molestia.save()
-            diagnostico = formulario.save(commit = False)
-            diagnostico.status =True
-            diagnostico.save()
-            return redirect('citas/')
+            con = formulario.save(commit = False)
+            con.save()
+            # con.status = True
+                # con.save()
+            # diagnostico = formulario.save(commit = False)
+            # diagnostico.status =True
+            # diagnostico.save()
+            # Consulta.estado = 'Proceso'
+            # Consula.paciente = pac.id
+            # medico = formulario.save()
+            return redirect('/')
     else:
-        form_cita.consuta = consult.id
+        #form_cita.consuta = consult.id
+        formulario = crear_cita_form()
     return render(request, 'cita.html',locals())
 
 
