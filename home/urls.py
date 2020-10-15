@@ -11,7 +11,11 @@ urlpatterns = [
     path('medico/', vista_medico, name = 'medico'),
     path('pacientes/', vista_pacientes, name = 'pacientes'),
     path('ordenes/', vista_ordenes, name = 'ordenes'),
-
-    # path('citas_paciente/', vista_citas_paciente, name = 'citas_paciente'),
-    # path('detalle_cita/<int:id_cita>', vista_detalle_cita, name = 'detalle_cita'),
+    path('atender/<int:id_consulta>',vista_atender_paciente, name= 'atender'),
+    path('crear_incapacidad/<int:id_consulta>', vista_crear_incapacidad, name = 'crear_incapacidad'),
+    path('formular_examenes/<int:id_consulta>', vista_formular_examenes, name = 'formular_examenes'),
+    path('remitir_paciente/<int:id_consulta>', vista_remitir_paciente, name = 'remitir_paciente'),
+    
+    path('citas_paciente/', vista_citas_paciente, name = 'citas_paciente'),
+    path('detalle_cita/<int:id_cita>', vista_detalle_cita, name = 'detalle_cita'),
 ]

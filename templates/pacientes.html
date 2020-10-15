@@ -88,7 +88,7 @@
                             <td>{{p.diagnostico}}</td>
                             <td>{{p.estado}}</td>
                             <td>
-                                <a href="{% url 'atender' %}">atender paciente</a>
+                                <a href="{% url 'atender' id_consulta=p.id %}">atender paciente</a>
                             </td>
                             
                         </tr>

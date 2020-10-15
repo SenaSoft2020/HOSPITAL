@@ -54,20 +54,11 @@
                 <h1 class="h2">Perfil</h1>
             </div>
             <!-- Contenido medico -->
-            {{consulta.fecha_consulta}}
-            {{consulta.molestia_principal}}
-            {{consulta.diagnostico}}
-            {{consulta.estado}}
-            {{consulta.medico}}
-            {{consulta.paciente}}
             <form action="" method="POST">
                 {% csrf_token %}
                 {{formulario.as_p}}
-                <input type="submit" value="Guardar Diagnostico">
+                <input type="submit" value="Guardar remision">
             </form>
-            <a href="{% url 'crear_incapacidad' id_consulta=consulta.id %}">crear incapacidad</a>
-            <a href="{% url 'formular_examenes' id_consulta=consulta.id %}">formular examenes </a>
-            <a href="{% url 'remitir_paciente' id_consulta=consulta.id %}">remitir paciente</a>
             <!-- FinContenido medico -->
         </main>
     </div>

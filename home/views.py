@@ -45,6 +45,7 @@ def vista_perfil(request):
 def vista_cita(request):
     return render(request, 'cita.html')
 
+
 def vista_crear_cita(request):
     usu = User.objects.get(id = request.user.id)
     pac = Paciente.objects.get(user= usu)
@@ -53,15 +54,9 @@ def vista_crear_cita(request):
         formulario = crear_cita_form(request.POST, request.FILES)
         if formulario.is_valid():
             con = formulario.save(commit = False)
+            con.estado = 'Proceso'
+            con.paciente = pac
             con.save()
-            # con.status = True
-                # con.save()
-            # diagnostico = formulario.save(commit = False)
-            # diagnostico.status =True
-            # diagnostico.save()
-            # Consulta.estado = 'Proceso'
-            # Consula.paciente = pac.id
-            # medico = formulario.save()
             return redirect('/')
     else:
         #form_cita.consuta = consult.id
@@ -78,68 +73,120 @@ def vista_medico(request):
 
 
 def vista_pacientes(request):
-    usu = User.objects.get(id = request.user.id)
-    med = Profesional.objects.get(user= usu)
-    
-    consultas = Consulta.objects.filter(medico = med) 
-    
-    return render(request, 'pacientes.html',locals())
+    usu = User.objects.get(id=request.user.id)
+    med = Profesional.objects.get(user=usu)
+
+    consultas = Consulta.objects.filter(medico=med)
+
+    return render(request, 'pacientes.html', locals())
+
 
 def vista_ordenes(request):
     return render(request, 'ordenes-m.html')
 
 
-def vista_atender_paciente(request):
-    usu = User.objects.get(id = request.user.id)
-    med = Profesional.objects.get(user= usu)
+def vista_atender_paciente(request, id_consulta):
+    usu = User.objects.get(id=request.user.id)
+    med = Profesional.objects.get(user=usu)
 
-    consulta = Consulta.objects.filter(medico = med)
-    
-    return render(request,'atender.html',locals())
+    consulta = Consulta.objects.get(id=id_consulta)
+
+    if request.method == 'POST':
+        formulario = atender_cita_form(
+            request.POST, request.FILES, instance=consulta)
+        if formulario.is_valid():
+            con = formulario.save(commit=False)
+            con.medico = med
+            con.paciente = consulta.paciente
+            con.estado = 'Proceso'
+            con.save()
+            return redirect('/pacientes')
+    else:
+        #form_cita.consuta = consult.id
+        formulario = atender_cita_form(instance=consulta)
+    return render(request, 'atender.html', locals())
 
 
-# def vista_citas_paciente(request):
-# 	usu = User.objects.get(id = request.user.id)
-# 	pac = Paciente.objects.get(user = usu)
-# 	consultas = Consulta.objects.filter(paciente = pac )
+def vista_remitir_paciente(request, id_consulta):
+    usu = User.objects.get(id=request.user.id)
+    med = Profesional.objects.get(user=usu)
+    consulta = Consulta.objects.get(id=id_consulta)
+    if request.method == 'POST':
+        formulario = atender_cita_form(
+            request.POST, request.FILES, instance=consulta)
+        if formulario.is_valid():
+            con = formulario.save(commit=False)
+            con.medico = med
+            con.paciente = consulta.paciente
+            con.estado = 'Proceso'
+            con.save()
+            return redirect('/pacientes')
+    else:
+        #form_cita.consuta = consult.id
+        formulario = atender_cita_form(instance=consulta)
+    return render(request, 'atender.html', locals())
 
-# 	return render(request, 'citas_paciente.html',locals())
+
+def vista_crear_incapacidad(request, id_consulta):
+    consulta = Consulta.objects.get(id=id_consulta)
+    if request.method == 'POST':
+        formulario = crear_incapacidad_form(request.POST, request.FILES)
+        if formulario.is_valid():
+            con = formulario.save(commit=False)
+            con.consulta = consulta
+            con.estado = 'Proceso'
+            con.save()
+            return redirect('/atender/%s' % id_consulta)
+    else:
+        formulario = crear_incapacidad_form()
+    return render(request, 'crear_incapacidad.html', locals())
+
+
+def vista_formular_examenes(request, id_consulta):
+    consulta = Consulta.objects.get(id=id_consulta)
+    if request.method == 'POST':
+        formulario = formular_examenes_form(request.POST)
+        if formulario.is_valid():
+            con = formulario.save(commit=False)
+            con.consulta = consulta
+            con.estado = 'Proceso'
+            con.save()
+            return redirect('/atender/%s' % id_consulta)
+    else:
+        formulario = formular_examenes_form()
+    return render(request, 'formular_examenes.html', locals())
+
+
+def vista_remitir_paciente(request, id_consulta):
+    consulta = Consulta.objects.get(id=id_consulta)
+    if request.method == 'POST':
+        formulario = remitir_paciente_form(request.POST)
+        if formulario.is_valid():
+            con = formulario.save(commit=False)
+            con.consulta = consulta
+            con.estado = 'Remitida'
+            con.save()
+            return redirect('/atender/%s' % id_consulta)
+    else:
+        formulario = remitir_paciente_form()
+    return render(request, 'remitir_paciente.html', locals())
+
+
+def vista_citas_paciente(request):
+	usu = User.objects.get(id = request.user.id)
+	pac = Paciente.objects.get(user = usu)
+	consultas = Consulta.objects.filter(paciente = pac )
+
+	return render(request, 'citas_paciente.html',locals())
 	
-# def vista_detalle_cita(request, id_cita):
-# 	consulta = Consulta.objects.get(id=id_cita)
+def vista_detalle_cita(request, id_cita):
+	consulta = Consulta.objects.get(id=id_cita)
+	try:
+		examenes = Toma_Examen.objects.get(consulta = id_cita)
+		remision = Remision.objects.get(consulta = id_cita)
+		incapacidad = Incapacidad.objects.filter(consulta = id_cita)
+		resultados = Resultado.objects.get(consulta = id_cita)
+	except:
+		pass
 
-
-
-# 	try:
-# 		examenes = Toma_Examen.objects.get(consulta = id_cita)
-# 		remision = Remision.objects.get(consulta = id_cita)
-# 		incapacidad = Incapacidad.objects.filter(consulta = id_cita)
-# 		resultados = Resultado.objects.get(consulta = id_cita)
-# 	except:
-# 		form_resultado = resultado_form()
-
-# 	if request.method == "POST":
-# 		form_cita = cita_form(request.POST, request.FILES, instance = consulta)
-# 		try:
-# 			form_resultado = resultado_form(request.FILES, instance = resultados)
-# 		except:
-# 			pass
-# 		if form_resultado.is_valid() or form_cita.is_valid():
-# 			form_cita.save()
-# 			# form_resultado.consulta = consulta
-# 			# form_resultado.save()
-# 			mensaje = 'se guardaron los cambios'
-# 		else:
-# 			mensaje = 'NO se guardaron los cambios'
-
-# 	else:	
-# 		form_cita = cita_form(instance = consulta)
-
-
-
-# 	# usu = User.objects.get(id = request.user.id)
-# 	# pac = Paciente.objects.get(user = usu)
-# 	# consulta.estado = 'Proceso'
-# 	# consulta.paciente = pac.id 
-
-# 	return render(request, 'detalle_cita.html',locals())
+	return render(request, 'detalle_cita.html',locals())
