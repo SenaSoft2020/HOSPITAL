@@ -75,18 +75,18 @@
             </div>
             <!-- Contenido medico -->
             <form method="POST" action=".">
-                {% csrf_token %}                                              
-                    <div class="form-group">
-                      <label for="exampleFormControlInput1">Medico General</label>
-                      <input type="text" class="form-control" placeholder="Medicos Generales">
-                      <!-- select -->
-                    </div>                                                             
-                    <div class="form-group">
-                      <label for="exampleFormControlTextarea1">Motivo de la cita</label>
-                      <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Escriba un breve diagnostico"></textarea>
-                    </div>               
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="exampleFormControlInput1">Medico General</label>
+                    <input type="text" class="form-control" placeholder="Medicos Generales">
+                    <!-- select -->
+                  </div>                                                             
+                  <div class="form-group">
+                    <label for="exampleFormControlTextarea1">Motivo de la cita</label>
+                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Escriba un breve diagnostico"></textarea>
+                  </div>
                 {{ formulario.as_p }}
-                <input class="btn btn-primary type="submit" value="Generar Consulta">
+                <input type="submit" value="Generar Consulta" class="btn btn-primary">
             </form>
             <!-- FinContenido medico -->
         </main>
@@ -94,3 +94,35 @@
 </div>
 <!-- Fin Contenido -->
 {% endblock contenido %}
+<!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+    Generar Consulta
+  </button>
+  
+  
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Detalle</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            {% for c in consultas %}
+                <div class="container-fluid">
+                    {{c.id}}
+                    {{c.paciente.nombres}}
+                    {{c.paciente.feche_nacimiento}}
+                    {{c.estado}}
+                    <a href="{% url 'detalle_cita' id_cita=c.id %}">detalle de la consulta</a>
+                </div>
+            {% endfor %}
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+          <button type="button" class="btn btn-primary">Enviar</button>
+        </div>
+      </div>
+    </div>
+  </div> -->
