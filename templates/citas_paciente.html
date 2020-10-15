@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block contenido %}
+<h1>Citas paciente</h1>
+<a href="">Mis consultas</a>
+
+<h2>mis consultas</h2>
+{% for c in consultas %}
+	<div class="container-fluid">
+		{{c.id}}
+		{{c.paciente.nombres}}
+		{{c.paciente.feche_nacimiento}}
+		{{c.estado}}
+		<a href="{% url 'detalle_cita' id_cita=c.id %}">detalle de la consulta</a>
+	</div>
+{% endfor %}
+
+{% endblock contenido %}

@@ -22,7 +22,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">
+                        <a class="nav-link" href="{% url 'ordenes' %}">
                             <span></span>
                             Ordenes Medicas
                         </a>
@@ -33,20 +33,7 @@
                             Solicitar Citas
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">
-                            <span></span>
-                            Citas pendientes
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">
-                            <span></span>
-                            Examenes
-                        </a>
-                    </li>
                 </ul>
-
                 <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
                     <span>Historia Medica</span>
                     <a class="d-flex align-items-center text-muted" href="#" aria-label="Add a new report">
@@ -55,15 +42,9 @@
                 </h6>
                 <ul class="nav flex-column mb-2">
                     <li class="nav-item">
-                        <a class="nav-link" href="#">
+                        <a class="nav-link" href="{% url 'examen' %}">
                             <span></span>
                             Mi Historia Medica
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">
-                            <span></span>
-                            Grupo Familiar
                         </a>
                     </li>
                     <li class="nav-item">
@@ -86,27 +67,80 @@
                 </ul>
             </div>
         </nav>
-
         <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
             <div
                 class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-                <h1 class="h2">Examenes</h1>
-                <div class="btn-toolbar mb-2 mb-md-0">
-                    <div class="btn-group mr-2">
-                        <span class="espce">
-                            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-funnel-fill"
-                                fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd"
-                                    d="M1.5 1.5A.5.5 0 0 1 2 1h12a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.128.334L10 8.692V13.5a.5.5 0 0 1-.342.474l-3 1A.5.5 0 0 1 6 14.5V8.692L1.628 3.834A.5.5 0 0 1 1.5 3.5v-2z" />
-                            </svg>
-                        </span>
-                        <input type="search" class="light-table-filter" data-table="order-table"
-                            placeholder="Examen Medico" />
+                <h1 class="h2">Ordenes Medicas</h1>
+            </div>
+            <!-- Contenido medico -->
+            <div class="col-md-7 ">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <div class="box box-info">
+                            <div class="box-body">
+                                <div class="col-sm-6">
+                                    <h4 style="color:#08e;">Detalle De la Cita</h4></span>
+                                </div>
+                                <div class="clearfix"></div>
+                                <div class="col-sm-5 col-xs-6 title ">
+                                    <h5>Datos del paciente</h5>
+                                    {{consulta.paciente.nombres}}
+                                    {{consulta.paciente.appelidos}}
+                                    {{consulta.paciente.fecha_nacimiento}}
+                                </div>
+                                <div class="col-sm-5 col-xs-6 title ">
+                                    <h5>Consulta</h5>
+                                    {{consulta.fecha_consulta}}
+                                    {{consulta.molestia_principal}}
+                                    {{consulta.diagnostico}}
+                                    {{consulta.estado}}
+                                    {{consulta.medico}}
+                                    {{consulta.paciente}}
+                                    <h2>{{mensaje}}</h2>
+                                </div>
+
+                                <div class="col-sm-5 col-xs-6 title ">
+                                    <h5>Remision</h5>
+                                    {% if remision %}
+                                    {{remision}}
+                                    {% else %}
+                                    No tiene remisiones
+                                    {% endif %}
+                                </div>
+
+                                <div class="col-sm-5 col-xs-6 title ">
+                                    <h5>examenes solicitados por el medico</h5>
+                                    {% if examenes %}
+
+                                    {{examenes}}
+                                    {% else %}
+                                    No tiene examenes
+                                    {% endif %}
+                                    <br>
+
+                                    {% if resultados %}
+
+                                    {{resultados}}
+                                    {% else %}
+                                    No tiene resultados
+                                    <a href="">agregar resultados</a>
+                                    {% endif %}
+                                </div>
+
+                                <div class="col-sm-5 col-xs-6 title ">
+                                    <h5>ver incapacidad</h5>
+                                    {% if incapacidad %}
+                                    {{incapacidad}}
+                                    {% else %}
+                                    No tiene incapacidades
+                                    {% endif %}
+                                </div>
+                                <div class="bot-border"></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-            <!-- Contenido medico -->
-
             <!-- FinContenido medico -->
         </main>
     </div>

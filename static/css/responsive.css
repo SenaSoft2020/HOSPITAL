@@ -14,7 +14,7 @@
 }
 
 .color{
-    background: #DFEEFA;
+    background: #F1F4F8;
 }
 
 .header{
@@ -87,10 +87,24 @@
 }
 
 .fuente {
-    color: #5bca3d;
+    color: #24E16A;
+    font-size: 18px;
     /* 6EFC47 */
 }
 
 .fuente:hover {
-    color: burlywood;
+    color: #5C8856;
+}
+
+.fuente2 {
+    color: #24E16A;
+    /* 6EFC47 */
+}
+
+.fuente2:hover {
+    color: #5C8856;
+}
+
+.fuente3 {
+    color: #08e;
 }

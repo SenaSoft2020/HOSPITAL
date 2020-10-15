@@ -1,13 +1,13 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block contenido %}
-<form action="" method="POST">
+<!-- <form action="" method="POST">
     {% csrf_token %}
     {{formulario}}
-    <input type="submit" value="Entrar">
-</form> 
+    <input  type="submit" value="Entrar" class="btn btn-primary">
+</form> -->
 <!-- Contenido -->
-<!-- <div class="container col-sm-6">
+<div class="container col-sm-6">
     <div class="borde col-sm-12">
         <div class="separate">
             <form class="boton" action="" method="POST">
@@ -15,24 +15,24 @@
                 <h1 class="display-4">Iniciar Sesion</h1>
                 <hr class="my-4">
                 <div class="form-group">
-                    <label for="exampleInputEmail1">Tipo de Identificacion</label>
-                                       
-                </div>
-                <div class="form-group">
-                    <label for="exampleInputEmail1">Numero Identificacion</label>
-                    {{form.paciente}}                    
+                    <!-- <label for="exampleInputEmail1">Numero de Identificacion</label> -->
+                    {{ formulario.paciente.errors }}
+                    <label for="{{ formulario.paciente.id_for_label }}">Identificacion</label>
+                    {{ formulario.paciente }}
+
+                    <!-- {{formulario.paciente}} -->
                 </div>
                 <div class="form-group">
                     <label for="exampleInputPassword1">Contraseña</label>
-                    {{form.clave}} 
+                    {{formulario.clave}} 
                 </div>
                 <div class="form-group form-check">
                     <input type="checkbox" class="form-check-input" id="exampleCheck1">
                     <label class="form-check-label" for="exampleCheck1">Recordarme</label>
                 </div>
-                <button type="submit" value="Entrar" class="btn btn-primary">Entrar</button>
+                <input  type="submit" value="Entrar" class="btn btn-primary">
             </form>
         </div>
     </div>
-</div> -->
+</div>
 {% endblock contenido %}

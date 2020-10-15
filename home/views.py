@@ -84,11 +84,9 @@ def vista_pacientes(request):
     consultas = Consulta.objects.filter(medico = med) 
     
     return render(request, 'pacientes.html',locals())
-    
 
-
-def vista_horario(request):
-    return render(request, 'horario.html')
+def vista_ordenes(request):
+    return render(request, 'ordenes-m.html')
 
 
 def vista_atender_paciente(request):
@@ -98,3 +96,50 @@ def vista_atender_paciente(request):
     consulta = Consulta.objects.filter(medico = med)
     
     return render(request,'atender.html',locals())
+
+
+# def vista_citas_paciente(request):
+# 	usu = User.objects.get(id = request.user.id)
+# 	pac = Paciente.objects.get(user = usu)
+# 	consultas = Consulta.objects.filter(paciente = pac )
+
+# 	return render(request, 'citas_paciente.html',locals())
+	
+# def vista_detalle_cita(request, id_cita):
+# 	consulta = Consulta.objects.get(id=id_cita)
+
+
+
+# 	try:
+# 		examenes = Toma_Examen.objects.get(consulta = id_cita)
+# 		remision = Remision.objects.get(consulta = id_cita)
+# 		incapacidad = Incapacidad.objects.filter(consulta = id_cita)
+# 		resultados = Resultado.objects.get(consulta = id_cita)
+# 	except:
+# 		form_resultado = resultado_form()
+
+# 	if request.method == "POST":
+# 		form_cita = cita_form(request.POST, request.FILES, instance = consulta)
+# 		try:
+# 			form_resultado = resultado_form(request.FILES, instance = resultados)
+# 		except:
+# 			pass
+# 		if form_resultado.is_valid() or form_cita.is_valid():
+# 			form_cita.save()
+# 			# form_resultado.consulta = consulta
+# 			# form_resultado.save()
+# 			mensaje = 'se guardaron los cambios'
+# 		else:
+# 			mensaje = 'NO se guardaron los cambios'
+
+# 	else:	
+# 		form_cita = cita_form(instance = consulta)
+
+
+
+# 	# usu = User.objects.get(id = request.user.id)
+# 	# pac = Paciente.objects.get(user = usu)
+# 	# consulta.estado = 'Proceso'
+# 	# consulta.paciente = pac.id 
+
+# 	return render(request, 'detalle_cita.html',locals())

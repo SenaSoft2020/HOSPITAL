@@ -1,0 +1,51 @@
+
+<h5>Datos del paciente</h5>
+{{consulta.paciente.nombres}}
+{{consulta.paciente.appelidos}}
+{{consulta.paciente.fecha_nacimiento}}
+<br>
+<h5>Consulta</h5>
+{{consulta.fecha_consulta}}
+{{consulta.molestia_principal}}
+{{consulta.diagnostico}}
+{{consulta.estado}}
+{{consulta.medico}}
+{{consulta.paciente}}
+<h2>{{mensaje}}</h2>
+
+<h5>Remision</h5> 
+{% if remision %}	
+	{{remision}}
+{% else %}
+	No tiene remisiones
+{% endif %}
+<br>
+
+<h5>examenes solicitados por el medico</h5>
+{% if examenes %}
+	
+	{{examenes}}
+{% else %}
+	No tiene examenes
+{% endif %}
+<br>
+
+{% if resultados %}
+	
+	{{resultados}}
+{% else %}
+	No tiene resultados
+	<a href="">agregar resultados</a>
+{% endif %}
+<br>
+
+<h5>ver incapacidad</h5>
+{% if incapacidad %}
+	{{incapacidad}}
+{% else %}
+	No tiene incapacidades
+{% endif %}
+
+<br>
+
+

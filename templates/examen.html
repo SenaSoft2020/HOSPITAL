@@ -22,7 +22,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">
+                        <a class="nav-link" href="{% url 'ordenes' %}">
                             <span></span>
                             Ordenes Medicas
                         </a>
@@ -33,20 +33,7 @@
                             Solicitar Citas
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">
-                            <span></span>
-                            Citas pendientes
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">
-                            <span></span>
-                            Examenes
-                        </a>
-                    </li>
                 </ul>
-
                 <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
                     <span>Historia Medica</span>
                     <a class="d-flex align-items-center text-muted" href="#" aria-label="Add a new report">
@@ -55,17 +42,11 @@
                 </h6>
                 <ul class="nav flex-column mb-2">
                     <li class="nav-item">
-                        <a class="nav-link" href="#">
+                        <a class="nav-link" href="{% url 'examen' %}">
                             <span></span>
                             Mi Historia Medica
                         </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">
-                            <span></span>
-                            Grupo Familiar
-                        </a>
-                    </li>
+                    </li>                    
                     <li class="nav-item">
                         <a class="nav-link" href="#">
                             <span></span>
@@ -114,6 +95,7 @@
                             <th>Medico</th>
                             <th>Fecha</th>
                             <th>lugar</th>
+                            <th>Ver detalle</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -122,23 +104,87 @@
                             <td>Dr. Alex</td>
                             <td>28/02/2019</td>
                             <td>Popayan</td>
+                            <td><a href="">
+                                    <span>
+                                        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-card-text"
+                                            fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd"
+                                                d="M14.5 3h-13a.5.5 0 0 0-.5.5v9a.5.5 0 0 0 .5.5h13a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-13z" />
+                                            <path fill-rule="evenodd"
+                                                d="M3 5.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zM3 8a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9A.5.5 0 0 1 3 8zm0 2.5a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 0 1h-6a.5.5 0 0 1-.5-.5z" />
+                                        </svg>
+                                    </span>
+                                </a>
+                            </td>
                         </tr>
                         <tr>
                             <td>frrrr</td>
                             <td>Dr. Alex</td>
                             <td>01/12/2020</td>
                             <td>Bogota</td>
+                            <td><a href="">
+                                <span>
+                                    <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-card-text"
+                                        fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd"
+                                            d="M14.5 3h-13a.5.5 0 0 0-.5.5v9a.5.5 0 0 0 .5.5h13a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-13z" />
+                                        <path fill-rule="evenodd"
+                                            d="M3 5.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zM3 8a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9A.5.5 0 0 1 3 8zm0 2.5a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 0 1h-6a.5.5 0 0 1-.5-.5z" />
+                                    </svg>
+                                </span>
+                            </a>
+                        </td>
                         </tr>
                         <tr>
                             <td>qaaaaa</td>
                             <td>Dr. Alex</td>
                             <td>12/05/2020</td>
                             <td>Cali</td>
+                            <td><a href="">
+                                <span>
+                                    <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-card-text"
+                                        fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd"
+                                            d="M14.5 3h-13a.5.5 0 0 0-.5.5v9a.5.5 0 0 0 .5.5h13a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-13z" />
+                                        <path fill-rule="evenodd"
+                                            d="M3 5.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zM3 8a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9A.5.5 0 0 1 3 8zm0 2.5a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 0 1h-6a.5.5 0 0 1-.5-.5z" />
+                                    </svg>
+                                </span>
+                            </a>
+                        </td>
                         </tr>
                     </tbody>
                 </table>
-
             </section>
+            <!-- FinContenido medico -->
+        </main>
+
+        <!-- grupo familiar -->
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
+            <div
+                class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                <h1 class="h2">Grupo Familiar</h1>
+                <div class="btn-toolbar mb-2 mb-md-0">
+                </div>
+            </div>
+            <!-- Contenido medico -->
+            <div class="col-md-7 ">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <div class="box box-info">
+                            <div class="box-body">
+                                <div class="col-sm-6">
+                                    <h4 style="color:#08e;">Flia. Castellanos</h4></span>
+                                </div>
+                                <div class="clearfix"></div>
+                                <div class="col-sm-7 col-xs-6 ">NOmbresa</div>
+                                <div class="clearfix"></div>
+                                <div class="bot-border"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>            
             <!-- FinContenido medico -->
         </main>
     </div>
