@@ -86,6 +86,11 @@
     margin-left: 70px;    
 }
 
-.fuente{
+.fuente {
+    color: #5bca3d;
     /* 6EFC47 */
+}
+
+.fuente:hover {
+    color: burlywood;
 }
